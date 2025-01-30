@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "../include/ordenacao_intercalacao.h"
 
 // Função para mesclar dois subarrays
 void merge(int *Array, int inicio, int meio, int fim) {
@@ -60,27 +61,3 @@ void mergeSort(int *Array, int inicio, int fim) {
     }
 }
 
-
-// Função para exibir o array
-void printArray(int *Array, int Tamanho) {
-    for (int i = 0; i < Tamanho; i++)
-        printf("%d ", Array[i]);
-    printf("\n");
-}
-
-
-// Programa principal para testar o Merge Sort
-int main() {
-    int Array[] = {12, 11, 13, 5, 6, 7};
-    int Tamanho = sizeof(Array) / sizeof(Array[0]);
-    
-    printf("Array original:\n");
-    printArray(Array, Tamanho);
-    
-    mergeSort(Array, 0, Tamanho - 1);
-    
-    printf("Array ordenado:\n");
-    printArray(Array, Tamanho);
-    
-    return 0;
-}

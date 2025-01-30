@@ -38,7 +38,7 @@ Implementação de algoritmos de ordenação e busca em C, com exemplos prático
 ### **🏗️ Compilando o Projeto**
 
 ```sh
-gcc -o main #tenho que terminar
+gcc -o main src/main.c src/bubble_sort.c src/busca_linear.c src/busca_binaria.c src/ordenacao_selecao.c src/ordenacao_insercao.c src/ordenacao_intercalacao.c -Iinclude
 ```
 
 ### **▶️ Executando**
@@ -52,7 +52,27 @@ Após a compilação, execute:
 ## 📄 Exemplo de Uso
 
 ```c
-#tenho que fazer
+#include <stdio.h>
+#include "bubble_sort.h"
+#include "busca_binaria.h"
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int tamanho = sizeof(arr) / sizeof(arr[0]);
+
+    // Ordenação por Bolha
+    bubble_sort(arr, tamanho);
+    printf("Array ordenado por Bolha: ");
+    for (int i = 0; i < tamanho; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Busca binária
+    int elemento = 22;
+    buscaBinaria(arr, tamanho, elemento);
+    return 0;
+}
 ```
 
 ---
