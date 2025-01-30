@@ -23,7 +23,7 @@ void buscaBinaria(int *array, int tamanho, int elemento) {
         }
         // Se o elemento do meio for maior que o buscado, descarta a metade superior
         else {
-            fim = meio - 1;        // Atualiza o fim para a posição antes do meio
+            fim = meio - 1;  // Atualiza o fim para a posição antes do meio
         }
     }
 
