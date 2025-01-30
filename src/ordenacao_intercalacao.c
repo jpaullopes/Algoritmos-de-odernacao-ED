@@ -2,62 +2,60 @@
 #include "../include/ordenacao_intercalacao.h"
 
 // Função para mesclar dois subarrays
-void merge(int *Array, int inicio, int meio, int fim) {
-    int i, j, k;
-    int n1 = meio - inicio + 1;
-    int n2 = fim - meio;
+void merge(int *array, int inicio, int meio, int fim) {
+    int indiceEsquerda, indiceDireita, indiceMerge;
+    int tamanhoEsquerda = meio - inicio + 1;
+    int tamanhoDireita = fim - meio;
     
     // Arrays temporários
-    int L[n1], R[n2];
+    int subarrayEsquerda[tamanhoEsquerda], subarrayDireita[tamanhoDireita];
     
     // Copia os dados para os arrays temporários
-    for (i = 0; i < n1; i++)
-        L[i] = Array[inicio + i];
-    for (j = 0; j < n2; j++)
-        R[j] = Array[meio + 1 + j];
+    for (indiceEsquerda = 0; indiceEsquerda < tamanhoEsquerda; indiceEsquerda++)
+        subarrayEsquerda[indiceEsquerda] = array[inicio + indiceEsquerda];
+    for (indiceDireita = 0; indiceDireita < tamanhoDireita; indiceDireita++)
+        subarrayDireita[indiceDireita] = array[meio + 1 + indiceDireita];
     
     // Intercala os arrays temporários de volta no original
-    i = 0;
-    j = 0;
-    k = inicio;
-    while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
-            Array[k] = L[i];
-            i++;
+    indiceEsquerda = 0;
+    indiceDireita = 0;
+    indiceMerge = inicio;
+    while (indiceEsquerda < tamanhoEsquerda && indiceDireita < tamanhoDireita) {
+        if (subarrayEsquerda[indiceEsquerda] <= subarrayDireita[indiceDireita]) {
+            array[indiceMerge] = subarrayEsquerda[indiceEsquerda];
+            indiceEsquerda++;
         } else {
-            Array[k] = R[j];
-            j++;
+            array[indiceMerge] = subarrayDireita[indiceDireita];
+            indiceDireita++;
         }
-        k++;
+        indiceMerge++;
     }
     
-    // Copia os elementos restantes de L[], se houver
-    while (i < n1) {
-        Array[k] = L[i];
-        i++;
-        k++;
+    // Copia os elementos restantes de subarrayEsquerda[], se houver
+    while (indiceEsquerda < tamanhoEsquerda) {
+        array[indiceMerge] = subarrayEsquerda[indiceEsquerda];
+        indiceEsquerda++;
+        indiceMerge++;
     }
     
-    // Copia os elementos restantes de R[], se houver
-    while (j < n2) {
-        Array[k] = R[j];
-        j++;
-        k++;
+    // Copia os elementos restantes de subarrayDireita[], se houver
+    while (indiceDireita < tamanhoDireita) {
+        array[indiceMerge] = subarrayDireita[indiceDireita];
+        indiceDireita++;
+        indiceMerge++;
     }
 }
 
-
 // Função principal do Merge Sort
-void mergeSort(int *Array, int inicio, int fim) {
+void mergeSort(int *array, int inicio, int fim) {
     if (inicio < fim) {
         int meio = inicio + (fim - inicio) / 2;
         
         // Ordena a primeira e a segunda metade
-        mergeSort(Array, inicio, meio);
-        mergeSort(Array, meio + 1, fim);
+        mergeSort(array, inicio, meio);
+        mergeSort(array, meio + 1, fim);
         
         // Mescla as duas metades ordenadas
-        merge(Array, inicio, meio, fim);
+        merge(array, inicio, meio, fim);
     }
 }
-
